@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Outdoor.sy Client Data Sorting
+This is a frontend tool that allows you to upload a csv or txt file with client and vehicle data that will display in a table that can be sorted based on client name or vehicle type.  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Initialization
+This is a React (18.1.0) app that uses stitches.dev for styling components. To initialize the project:
 
-## Available Scripts
+1. git clone
+2. cd outdoorsy
+3. npm start
 
-In the project directory, you can run:
+This should open your browser to localhost:3000, and the app should be displayed.
 
-### `npm start`
+## Usage
+When first coming to the site, there will not be any client data. You will see a `Choose File` button. Click on that to upload a csv or txt file. For ease of testing, I have added our two sample documents under the `/testData` directory. Once I file is chosen, click `Upload` to upload your data or if you want to choose a different file you can click `Clear`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Once your data is uploaded, a table will display it. You will notice that `Full Name` and `Vehicle Type` have arrows next to them. If you click on either title, it will sort them alphabetically. If you click it again, it will reverse the data. The arrow will turn a light blue color to indicate that is the column that the data is being sorted by.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If you decided you want to clear all of your data, you can hit the `Clear Data` button below the table. Since you cannot undo this action, you will first need to confirm this is what you want to do in the dialog that will pop up.
 
-### `npm test`
+## Data
+When parsing the txt files, I am taking each row and creating a new `Client` object that gets passed into my local state `data` variable. Each object has a `name`, `email`, `vType` (vehicle type), `vName` (vehicle name), and `vLength` (vehicle length). The first two columns in each row are being combined to create one full name to be set as the `name` value. Vehicle type is being downcased for consistentcy and ease of sorting. And we are changing Vehicle length to be consistent by having the length end with "'" to signify feet. This is currently working with the same data given. If users were to enter lengths that were written out (ex: twenty-five feet), then we would need to go about this a different way.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before being added to the `data` state, we are doing a few validations to make sure all the data is present, the email is valid and that there was a number entered for the vehicle length. This is assuming we are not allowing numbers written out.
 
-### `npm run build`
+We are currently just storing data in local state, if the page is refreshed, it will be lost. If we want, we can store the data in localStorage for longer persistence.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## FullStack
+For this project, I chose to just to a frontend application. If I were going to create a backend to go with it I would have created two models, a `Client` model with `name`, `email`, `id`, and `vehicles` properties and a `Vehicle` model with `id`, `category`, `name`, `length`, and `client`. These models would have a one to many relationship where a client could have many vehicles. Once I had this, it would be easier to make sure that we do not have any duplicates on data uploads. For the current project, I did not check against a client's name to check for duplicates because I assumed that there could be several client records with different vehicles. If we wanted to do a more indepth search to check the user name and vehicle name of each object to make sure they were different we could, this just seemed like a better job for a backend to take care of if/when one was implemented. 

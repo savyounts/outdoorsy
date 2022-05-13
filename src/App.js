@@ -1,47 +1,54 @@
-import { useState } from 'react';
-import { styled } from '@stitches/react';
-import FileUpload from './Components/FileUpload';
+import { useState, useEffect } from 'react';
 import DataTable from './Components/DataTable';
 import Button from './Components/Button';
 
 function App() {
-  const [ data, setData ] = useState(localStorage.getItem('outdoors_data') || []);
+  const [ data, setData ] = useState([]);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('outdoorsy_data'));
+    setData(storedData);
+  },[]);
 
   const handleClear = () => {
     const confirm = window.confirm('Are you sure you want to clear the client data? You cannot undo this action.');
-    confirm && setData([]);
-  }
+    confirm && setData([]) && localStorage.setItem('outdoorsy_data', '');
+
+  };
+
+  // Styles
   const appStyles = {
     backgroundColor: '#282c34',
     color:           'white',
     fontSize:        12,
-    width:           '100%',
+    height:          '100%',
     position:        'absolute',
     top:             0,
-    height:          '100%',
+    width:           '100%',
+
   };
 
   const centerStyles = {
-    width: '90%',
     margin: '0 auto',
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '90%',
   };
 
-  const Title = styled('h1', {
+  const titleStyles = {
+    fontSize: '3em',
     margin: 40,
-    fontSize: '3em'
-  })
+  };
 
   return (
     <div style={ appStyles }>
       <div style={ centerStyles }>
         <header>
-          <Title>
+          <h1 style={ titleStyles }>
             Welcome to Outdoor.sy
-          </Title>
+          </h1>
         </header>
         <DataTable data={data} setData={setData}/>
-        { !!data.length && <Button onClick={handleClear}>Clear Data</Button>}
+        { !!data.length && <Button onClick={handleClear} color='white'>Clear Data</Button> }
       </div>
     </div>
   );
