@@ -4,7 +4,7 @@ This is a frontend tool that allows you to upload a csv or txt file with client 
 ## Project Initialization
 This is a React (18.1.0) app that uses stitches.dev for styling components. To initialize the project:
 
-1. git clone
+1. git@github.com:savyounts/outdoorsy.git
 2. cd outdoorsy
 3. npm start
 
@@ -25,4 +25,4 @@ Before being added to the `data` state, we are doing a few validations to make s
 We are currently just storing data in local state, if the page is refreshed, it will be lost. If we want, we can store the data in localStorage for longer persistence.
 
 ## FullStack
-For this project, I chose to just to a frontend application. If I were going to create a backend to go with it I would have created two models, a `Client` model with `name`, `email`, `id`, and `vehicles` properties and a `Vehicle` model with `id`, `category`, `name`, `length`, and `client`. These models would have a one to many relationship where a client could have many vehicles. Once I had this, it would be easier to make sure that we do not have any duplicates on data uploads. For the current project, I did not check against a client's name to check for duplicates because I assumed that there could be several client records with different vehicles. If we wanted to do a more indepth search to check the user name and vehicle name of each object to make sure they were different we could, this just seemed like a better job for a backend to take care of if/when one was implemented. 
+For this project, I chose to just to a frontend application. If I were going to create a backend to go with it I would have created two models, a `Client` model with `name`, `email`, `id`, and `vehicles` properties and a `Vehicle` model with `id`, `category`, `name`, `length`, and `client`. These models would have a one to many relationship where a client could have many vehicles. Once I had this, it would be easier to make sure that we do not have any duplicates on data uploads. For the current project, I did not check against a client's name to check for duplicates because I assumed that there could be several client records with different vehicles. If we wanted to do a more indepth search to check the user name and vehicle name of each object to make sure they were different we could, this just seemed like a better job for a backend to take care of if/when one was implemented.
