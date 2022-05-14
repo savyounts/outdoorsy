@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
 
 const ClientRow = props => {
-  const { client } = props;
+  const { client, row } = props;
 
   const Cell = styled('p', {
     borderLeft: '1px solid white',
@@ -19,10 +19,10 @@ const ClientRow = props => {
     gridTemplateColumns: '1fr 1.5fr 1fr 1fr .5fr',
     width: '100%',
   });
-  
+
   return (
     <Row>
-      { Object.keys(client).map(key => <Cell key={key}> {client[key]}</Cell>) }
+      { Object.keys(client).map((k, i) => <Cell key={`Row-${row}-Cell${i}`}> {client[k]}</Cell>) }
     </Row>
   );
 };

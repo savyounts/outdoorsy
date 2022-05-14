@@ -1,37 +1,33 @@
 import { styled } from '@stitches/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ClientRow from './ClientRow';
 import SortArrow from './SortArrow';
 import FileUpload from './FileUpload';
 
 const DataTable = props => {
   const { data, setData } = props;
+  const [ sortedData, setSortedData ] = useState(null);
   const [ sortBy, setSortBy ] = useState(null);
   const [ reversed, setReversed ] = useState(false);
 
-  const createHeaders = () => {
-    const headers = ['Full Name', 'Email', 'Vehicle Type', 'Vehicle Name', 'Vehicle Length'];
-    return headers.map(h => {
-      if (h === 'Full Name') return <Header as='button' key={h} onClick={() => handleSort('name')} sort>{h} <SortArrow color={sortBy === 'name'} direction={sortBy === 'name' && reversed}/></Header>;
-      if (h === 'Vehicle Type') return <Header as='button' key={h} onClick={() => handleSort('vType')} sort>{h} <SortArrow color={sortBy === 'vType'} direction={sortBy === 'vType' && reversed}/></Header>;
-      return <Header key={h}>{h}</Header>
-    });
-  };
-
+  useEffect(() => {
+    setSortedData(data)
+  }, [data]);
+  console.log(sortedData, sortBy, reversed)
   const handleSort = (type) => {
     if (sortBy === type) {
-      let reversedData = [].concat(data).reverse();
+      let reversedData = [].concat(sortedData).reverse();
       setReversed(!reversed)
-      return setData(reversedData);
+      return setSortedData(reversedData);
     }
-    const sorted = data.sort((a,b) => a[type] > b[type] ? 1 : -1);
+    const sorted = sortedData.sort((a,b) => a[type] > b[type] ? 1 : -1);
     setReversed(false)
-    setData(sorted);
+    setSortedData(sorted);
     setSortBy(type);
   };
 
-  const parseData = () => {
-    return data.map(d => <ClientRow key={d.name} client={d}/>)
+  const renderData = (clientData) => {
+    return clientData.map((d,i) => <ClientRow key={`Row -${i}`} client={d} row={i}/>)
   };
 
   // Styles
@@ -66,6 +62,12 @@ const DataTable = props => {
     gridTemplateColumns: '1fr 1.5fr 1fr 1fr .5fr',
   });
 
+  const tableHeaders = ['Full Name', 'Email', 'Vehicle Type', 'Vehicle Name', 'Vehicle Length'].map(h => {
+      if (h === 'Full Name') return <Header as='button' key={h} onClick={() => handleSort('name')} sort>{h} <SortArrow color={sortBy === 'name'} direction={sortBy === 'name' && reversed}/></Header>;
+      if (h === 'Vehicle Type') return <Header as='button' key={h} onClick={() => handleSort('vType')} sort>{h} <SortArrow color={sortBy === 'vType'} direction={sortBy === 'vType' && reversed}/></Header>;
+      return <Header key={h}>{h}</Header>
+  });
+
   const TableWrapper = styled('div', {
     border: '1px solid white',
     margin: '0 auto',
@@ -93,12 +95,12 @@ const DataTable = props => {
     <div>
       <TopWrapper>
         <Title>Client Data</Title>
-        <FileUpload data={data} setData={setData}/>
+        <FileUpload data={data} setData={setData} setSort={setSortBy}/>
       </TopWrapper>
-      { data.length ?
+      { !!data.length ?
         <TableWrapper>
-          <Heading>{createHeaders()}</Heading>
-          {parseData()}
+          <Heading>{tableHeaders}</Heading>
+          {renderData(sortedData || data)}
         </TableWrapper>
         : <Title as='p'>No user data uploaded yet.</Title>}
     </div>
