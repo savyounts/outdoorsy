@@ -1,13 +1,16 @@
 const validEmail = email => {
-  return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
+  const emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailCheck.test(email)
 };
 
 const isNumber = string => {
-  return string.match(/\d+/g);
+  const numCheck = /\d+/g;
+  return string.match(numCheck);
 }
 
 const rowInvalid = (r) => {
-  if (r.length !== 6) return 'Please fill out missing information';
+  //check if data is missing or if any field is just a space
+  if (r.length !== 6 || r.some(d => !d.trim())) return 'Please fill out missing information';
   if (!validEmail(r[2])) return 'Please enter a valid email';
   if (!isNumber(r[5])) return 'Please enter a number for vehicle length';
 }

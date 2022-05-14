@@ -6,14 +6,16 @@ function App() {
   const [ data, setData ] = useState([]);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('outdoorsy_data'));
-    setData(storedData);
+    let storedData = localStorage.getItem('outdoorsy_data');
+    storedData && setData(JSON.parse(storedData));
   },[]);
 
   const handleClear = () => {
     const confirm = window.confirm('Are you sure you want to clear the client data? You cannot undo this action.');
-    confirm && setData([]) && localStorage.setItem('outdoorsy_data', '');
-
+    if (confirm) {
+      setData([]);
+      localStorage.setItem('outdoorsy_data', '');
+    }
   };
 
   // Styles
@@ -21,11 +23,10 @@ function App() {
     backgroundColor: '#282c34',
     color:           'white',
     fontSize:        12,
-    height:          '100%',
+    height:          'auto',
     position:        'absolute',
     top:             0,
     width:           '100%',
-
   };
 
   const centerStyles = {
