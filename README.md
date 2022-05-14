@@ -4,14 +4,14 @@ This is a frontend tool that allows you to upload a csv or txt file with client 
 ## Project Initialization
 This is a React (18.1.0) app that uses stitches.dev for styling components. To initialize the project:
 
-1. git@github.com:savyounts/outdoorsy.git
+1. clone git@github.com:savyounts/outdoorsy.git
 2. cd outdoorsy
 3. npm start
 
 This should open your browser to localhost:3000, and the app should be displayed.
 
 ## Usage
-When first coming to the site, there will not be any client data. You will see a `Choose File` button. Click on that to upload a csv or txt file. For ease of testing, I have added our two sample documents under the `/testData` directory. Once I file is chosen, click `Upload` to upload your data or if you want to choose a different file you can click `Clear`.
+When first coming to the site, there will not be any client data. You will see a `Choose File` button. Click on that to upload a csv or txt file. For ease of testing, I have added our two sample documents under the `/testData` directory. Once a file is chosen, click `Upload` to upload your data or if you want to choose a different file you can click `Clear`.
 
 Once your data is uploaded, a table will display it. You will notice that `Full Name` and `Vehicle Type` have arrows next to them. If you click on either title, it will sort them alphabetically. If you click it again, it will reverse the data. The arrow will turn a light blue color to indicate that is the column that the data is being sorted by.
 

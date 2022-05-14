@@ -20,10 +20,9 @@ function App() {
 
   // Styles
   const appStyles = {
-    backgroundColor: '#282c34',
     color:           'white',
     fontSize:        12,
-    height:          'auto',
+    height:          '100%',
     position:        'absolute',
     top:             0,
     width:           '100%',
