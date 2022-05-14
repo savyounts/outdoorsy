@@ -22,7 +22,7 @@ const ClientRow = props => {
 
   return (
     <Row>
-      { Object.keys(client).map((k, i) => <Cell key={`Row-${row}-Cell${i}`}> {client[k]}</Cell>) }
+      { Object.keys(client).map((key, i) => <Cell key={`Row-${row}-Cell${i}`}> {client[key]}</Cell>) }
     </Row>
   );
 };

@@ -19,11 +19,9 @@ const Button = props => {
       color: {
         white: {
           backgroundColor: 'white',
-          border: '1px solid #282c34',
           color: '#282c34',
           '&:hover': {
             backgroundColor: '#282c34',
-            border: '1px solid white',
             color: 'white',
           },
         }
