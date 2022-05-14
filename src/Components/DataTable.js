@@ -13,7 +13,7 @@ const DataTable = props => {
   useEffect(() => {
     setSortedData(data)
   }, [data]);
-  console.log(sortedData, sortBy, reversed)
+
   const handleSort = (type) => {
     if (sortBy === type) {
       let reversedData = [].concat(sortedData).reverse();
