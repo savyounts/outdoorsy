@@ -33,7 +33,7 @@ const DataTable = props => {
   // Styles
   const Header = styled('p', {
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(255, 188, 0)',
     border: 'none',
     borderLeft: '1px solid #282c34',
     color: '#282c34',
@@ -69,7 +69,7 @@ const DataTable = props => {
   });
 
   const TableWrapper = styled('div', {
-    border: '1px solid white',
+    border: '1px solid rgb(255, 188, 0)',
     margin: '0 auto',
     width: '90%',
     '@media (max-width: 767px)': {

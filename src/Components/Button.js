@@ -4,25 +4,25 @@ const Button = props => {
   const { onClick, children, color } = props;
 
   const StyledButton = styled('button', {
-    backgroundColor: '#282c34',
-    border: '1px solid white',
+    backgroundColor: 'transparent',
+    border: '1px solid rgb(255, 188, 0)',
     borderRadius: 15,
-    color: 'white',
+    color: 'rgb(255, 188, 0)',
     cursor: 'pointer',
     margin: 8,
     padding: 8,
     '&:hover': {
-      backgroundColor: 'white',
-      color: '#282c34',
+      backgroundColor: 'rgb(255, 188, 0)',
+      color: '#0e1225',
     },
     variants: {
       color: {
         white: {
-          backgroundColor: 'white',
-          color: '#282c34',
+          backgroundColor: 'rgb(255, 188, 0)',
+          color: '#0e1225',
           '&:hover': {
-            backgroundColor: '#282c34',
-            color: 'white',
+            backgroundColor: '#0e1225',
+            color: 'rgb(255, 188, 0)',
           },
         }
       }

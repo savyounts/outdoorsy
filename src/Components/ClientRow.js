@@ -4,6 +4,7 @@ const ClientRow = props => {
   const { client, row } = props;
 
   const Cell = styled('p', {
+    backgroundColor: '#0e1225',
     borderLeft: '1px solid white',
     margin: 0,
     padding: 5,

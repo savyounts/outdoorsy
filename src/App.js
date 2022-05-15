@@ -20,9 +20,13 @@ function App() {
 
   // Styles
   const appStyles = {
+    backgroundImage: 'url(https://assets.website-files.com/612fc9b7859cf45dee4845ff/6168e2cbab9e3b74bc7d7bea_TWG_Topo_L1.svg)',
+    backgroundPosition: '50% 50%',
+    backgroundRepeat: 'repeat',
+    backgroundSize: 'auto 105%',
     color:           'white',
     fontSize:        12,
-    height:          '100%',
+    height:          'fit-content',
     position:        'absolute',
     top:             0,
     width:           '100%',

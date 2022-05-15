@@ -1,21 +1,22 @@
-const validEmail = email => {
+export const validEmail = email => {
   const emailCheck = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailCheck.test(email)
 };
 
-const isNumber = string => {
+export const isNumber = string => {
   const numCheck = /\d+/g;
-  return string.match(numCheck);
+  return numCheck.test(string);
 }
 
-const rowInvalid = (r) => {
+export const rowInvalid = (r) => {
   //check if data is missing or if any field is just a space
   if (r.length !== 6 || r.some(d => !d.trim())) return 'Please fill out missing information';
   if (!validEmail(r[2])) return 'Please enter a valid email';
   if (!isNumber(r[5])) return 'Please enter a number for vehicle length';
+  return false;
 }
 
-const createClient = client => {
+export const createClient = client => {
   return  {
     name: `${client[0]} ${client[1]}`,
     email: client[2],

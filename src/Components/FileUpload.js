@@ -44,15 +44,15 @@ const FileUpload = props => {
   const Input = styled('input', {
     margin: 10,
     '&::file-selector-button': {
-      backgroundColor: '#282c34',
-      border: '1px solid white',
+      backgroundColor: '#0e1225',
+      border: '1px solid rgb(255, 188, 0)',
       borderRadius: 15,
-      color: 'white',
+      color: 'rgb(255, 188, 0)',
       cursor: 'pointer',
       padding: 8,
       '&:hover': {
-        backgroundColor: 'white',
-        color: '#282c34',
+        backgroundColor: 'rgb(255, 188, 0)',
+        color: '#0e1225',
       },
     }
   })
