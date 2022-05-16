@@ -15,8 +15,6 @@ test('renders No user data uploaded yet if there isnt client data ', () => {
   expect(message).toBeInTheDocument();
 });
 
-
-
 /**
   Validation Tests
 **/
