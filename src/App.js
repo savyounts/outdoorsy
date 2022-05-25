@@ -26,7 +26,7 @@ function App() {
     backgroundSize: 'auto 105%',
     color:           'white',
     fontSize:        12,
-    height:          'fit-content',
+    minHeight:       '100%',
     position:        'absolute',
     top:             0,
     width:           '100%',
